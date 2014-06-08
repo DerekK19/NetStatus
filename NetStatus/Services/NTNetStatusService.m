@@ -28,24 +28,11 @@
     dispatch_once(&onceToken,
                   ^{
                       theInstance = [NTNetStatusService new];
-                      theInstance.domainList = @[@"xyzzy.gordonknight.co.uk",
-                                                 @"xyzzy.lizderekgordonknight.co.uk"
+                      theInstance.domainList = @[@"myserver.mydomain.com"
                                                  ];
                       theInstance.serverList = @[
-                                                 @[@"modem", @"192.168.0.1"],
-                                                 @[@"wireless 1", @"192.168.0.2"],
-                                                 @[@"wireless 2", @"192.168.0.3"],
-                                                 @[@"laserjet", @"192.168.0.4"],
-                                                 @[@"Trafford", @"192.168.0.5"],
-                                                 @[@"Carrington", @"192.168.0.6"],
-                                                 @[@"Prejudice", @"192.168.0.7"],
-                                                 @[@"Manderley", @"192.168.0.21"],
-                                                 @[@"Russet", @"192.168.0.22"],
-                                                 @[@"Zirconium", @"192.168.0.40"],
-                                                 @[@"Niobium", @"192.168.0.41"],
-                                                 @[@"Molybdenum", @"192.168.0.42"],
-                                                 @[@"Flossie", @"192.168.0.50"],
-                                                 @[@"Arduino", @"192.168.0.90"]
+                                                 @[@"machine1", @"192.168.0.1"],
+                                                 @[@"machine2", @"192.168.0.2"]
                                                  ];
                       
                       theInstance.servers = [[NSMutableArray alloc]init];

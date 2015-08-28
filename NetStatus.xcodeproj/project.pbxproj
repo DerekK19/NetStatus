@@ -27,6 +27,7 @@
 		658C836F1942E37C009C961E /* yellowDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 658C836C1942E37C009C961E /* yellowDot.png */; };
 		65E5CE37194033A400A7BB45 /* NTmainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5CE36194033A400A7BB45 /* NTmainView.swift */; };
 		65E5CE3B1940372500A7BB45 /* NTNetStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5CE3A1940372500A7BB45 /* NTNetStatusService.m */; };
+		710A26841B8FFC97002CF561 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710A26831B8FFC97002CF561 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		9969F92074724551AAC24065 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7204FDCE6C63442FB4DD8CD8 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		65E5CE36194033A400A7BB45 /* NTmainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NTmainView.swift; sourceTree = "<group>"; };
 		65E5CE391940372500A7BB45 /* NTNetStatusService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTNetStatusService.h; sourceTree = "<group>"; };
 		65E5CE3A1940372500A7BB45 /* NTNetStatusService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTNetStatusService.m; sourceTree = "<group>"; };
+		710A26831B8FFC97002CF561 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7204FDCE6C63442FB4DD8CD8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C4ADF2456449739E032589 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 		65370DC11808BE55008CFCD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				710A26831B8FFC97002CF561 /* LaunchScreen.storyboard */,
 				65370D931808BB3A008CFCD3 /* Main_iPhone.storyboard */,
 				65370D961808BB3A008CFCD3 /* Main_iPad.storyboard */,
 				658C83671942CB1D009C961E /* statusCell.xib */,
@@ -285,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				710A26841B8FFC97002CF561 /* LaunchScreen.storyboard in Resources */,
 				65370D981808BB3A008CFCD3 /* Main_iPad.storyboard in Resources */,
 				65370DA01808BB3A008CFCD3 /* Images.xcassets in Resources */,
 				658C83681942CB1E009C961E /* statusCell.xib in Resources */,
@@ -437,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "1FBAE786-B5A5-4CD6-BD24-C1D4A7A6EB22";
 				SDKROOT = iphoneos;
@@ -471,7 +475,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PROVISIONING_PROFILE = "1FBAE786-B5A5-4CD6-BD24-C1D4A7A6EB22";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -484,7 +488,6 @@
 			baseConfigurationReference = 83C4ADF2456449739E032589 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -493,7 +496,7 @@
 				INFOPLIST_FILE = "NetStatus/NetStatus-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0C699939-3655-4E0C-ABC0-90337B22E8FA";
+				PROVISIONING_PROFILE = "6c356b1a-24b6-488b-ac96-d551b917aa7e";
 				SWIFT_OBJC_BRIDGING_HEADER = "NetStatus/NetStatus-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -505,7 +508,6 @@
 			baseConfigurationReference = 83C4ADF2456449739E032589 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -514,7 +516,7 @@
 				INFOPLIST_FILE = "NetStatus/NetStatus-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0C699939-3655-4E0C-ABC0-90337B22E8FA";
+				PROVISIONING_PROFILE = "6c356b1a-24b6-488b-ac96-d551b917aa7e";
 				SWIFT_OBJC_BRIDGING_HEADER = "NetStatus/NetStatus-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

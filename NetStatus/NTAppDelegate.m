@@ -14,12 +14,10 @@
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSLog(@"Registering for push notifications...");
-    [[UIApplication sharedApplication]
-     registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeAlert |
-      UIRemoteNotificationTypeBadge |
-      UIRemoteNotificationTypeSound)];
-
+    UIUserNotificationType notificationTypes = UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes: notificationTypes
+                                                                                    categories: nil]];
+    
     [self clearAllNotifications];
     
     return YES;

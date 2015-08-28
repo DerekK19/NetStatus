@@ -55,11 +55,11 @@ struct Server
                                    NTNetStatusServiceDelegate
 {
 
-    @IBOutlet var tableView : UITableView
-    @IBOutlet var refreshHeaderView : EGORefreshTableHeaderView
+    @IBOutlet var tableView : UITableView!
+    @IBOutlet var refreshHeaderView : EGORefreshTableHeaderView!
     @IBAction func unwindToMain(segue: UIStoryboardSegue) {}
 
-    var servers: Server[] = []
+    var servers = [Server]()
     var reloading: Bool = false
 
     override func viewDidLoad()
@@ -67,57 +67,60 @@ struct Server
         super.viewDidLoad()
 
         self.tableView.registerClass(serverCell.self, forCellReuseIdentifier: kReuseId)
-        var nibName=UINib(nibName: kCellNib, bundle:nil)
+        let nibName=UINib(nibName: kCellNib, bundle:nil)
         self.tableView.registerNib(nibName, forCellReuseIdentifier: kReuseId)
 
-        if !self.refreshHeaderView
+        if self.refreshHeaderView == nil
         {
-            var view: EGORefreshTableHeaderView = EGORefreshTableHeaderView(frame: CGRectMake(0.0, 0.0 - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height))
+            let view: EGORefreshTableHeaderView = EGORefreshTableHeaderView(frame: CGRectMake(0.0, 0.0 - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height))
             view.delegate = self
             self.tableView.addSubview(view)
             self.refreshHeaderView = view
         }
 
         //  update the last update date
-        refreshHeaderView.refreshLastUpdatedDate()
-
+        if self.refreshHeaderView != nil
+        {
+            refreshHeaderView.refreshLastUpdatedDate()
+        }
+        
         NTNetStatusService.setDelegate(self)
         NTNetStatusService.loadData()
     }
 
     // Delegate functions for UITableView
-    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.servers.count
     }
 
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: serverCell? = tableView.dequeueReusableCellWithIdentifier(kReuseId, forIndexPath: indexPath) as? serverCell
-        if !cell
+        if cell == nil
         {
             cell = serverCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseId)
         }
         cell!.server = self.servers[indexPath.row]
         cell!.selectionStyle = UITableViewCellSelectionStyle.None
-        return cell;
+        return cell!
     }
 
-    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!)
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
     }
 
     // Delegate functions for NTNetStatusService
-    func service(service: NTNetStatusService!, didGetServers records: AnyObject[]!)
+    func service(service: NTNetStatusService!, didGetServers records: [AnyObject])
     {
         servers = []
         for record : AnyObject in records
         {
-            let sRecord = record as NSDictionary
-            self.servers.append(Server(name: sRecord["name"] as String,
-                                         ip: sRecord["ip"] as String,
-                                      state: sRecord["state"] as String == "R" ? ServerRunState.Running :
-                                             sRecord["state"] as String == "N" ? ServerRunState.NotRunning : ServerRunState.Unknown))
+            let sRecord = record as! NSDictionary
+            self.servers.append(Server(name: sRecord["name"] as! String,
+                                         ip: sRecord["ip"] as! String,
+                                      state: sRecord["state"] as! String == "R" ? ServerRunState.Running :
+                                             sRecord["state"] as! String == "N" ? ServerRunState.NotRunning : ServerRunState.Unknown))
         }
         self.tableView.reloadData()
     }
@@ -148,8 +151,8 @@ struct Server
     func egoRefreshTableHeaderDidTriggerRefresh(view: EGORefreshTableHeaderView)
     {
         self.reloadTableViewDataSource()
-        var delay = 3.0 * Double(NSEC_PER_SEC)
-        var time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        let delay = 3.0 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {self.doneLoadingTableViewData()})
     }
 
@@ -169,7 +172,7 @@ struct Server
  */
 class reverseView : UIViewController
 {
-    @IBOutlet var info: UILabel
+    @IBOutlet var info: UILabel!
 
     override func viewDidLoad()
     {
@@ -185,16 +188,16 @@ class reverseView : UIViewController
  */
 class serverCell : UITableViewCell
 {
-    @IBOutlet var serverName: UILabel
-    @IBOutlet var serverStatus: UIImageView
+    @IBOutlet var serverName: UILabel!
+    @IBOutlet var serverStatus: UIImageView!
 
     var server: Server?
     {
         didSet
         {
-            if (server)
+            if server != nil
             {
-                var imageName = server!.state == ServerRunState.Running ? "greenDot" :
+                let imageName = server!.state == ServerRunState.Running ? "greenDot" :
                                 server!.state == ServerRunState.NotRunning ? "redDot" : "yellowDot"
                 self.serverName.text = server!.name + " (\(server!.ip))"
                 self.serverStatus.image = UIImage(named: imageName)
@@ -202,8 +205,11 @@ class serverCell : UITableViewCell
         }
     }
 
-    init(style: UITableViewCellStyle, reuseIdentifier: String!)
-    {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
